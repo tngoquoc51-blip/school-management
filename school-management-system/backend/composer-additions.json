@@ -1,0 +1,9 @@
+{
+  "_note": "Gộp 2 phần này vào composer.json của Laravel rồi chạy: composer dump-autoload",
+  "autoload": {
+    "psr-4": {
+      "Modules\\": "Modules/"
+    },
+    "files": ["app/Core/Helpers/helpers.php"]
+  }
+}

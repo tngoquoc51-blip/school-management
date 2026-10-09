@@ -1,0 +1,25 @@
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: school_db
+      MYSQL_ROOT_PASSWORD: root
+    ports: ["3306:3306"]
+    volumes: [dbdata:/var/lib/mysql]
+
+  backend:
+    build: ./docker/backend
+    working_dir: /var/www
+    volumes: ["./backend:/var/www"]
+    ports: ["8000:8000"]
+    depends_on: [db]
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../docker/frontend/Dockerfile
+    volumes: ["./frontend:/app", "/app/node_modules"]
+    ports: ["3000:3000"]
+
+volumes:
+  dbdata:
